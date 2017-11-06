@@ -101,7 +101,7 @@ open class ImageSlideshowItem: UIScrollView, UIScrollViewDelegate {
 
         singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(retryLoadImage))
         singleTapGestureRecognizer!.numberOfTapsRequired = 1
-        singleTapGestureRecognizer!.isEnabled = tapZoomEnabled
+        singleTapGestureRecognizer!.isEnabled = tapReloadImageEnabled
         imageView.addGestureRecognizer(singleTapGestureRecognizer!)
     }
 
