@@ -48,11 +48,11 @@ open class ImageSlideshowItem: UIScrollView, UIScrollViewDelegate {
     fileprivate var loadFailed = false {
         didSet {
             singleTapGestureRecognizer?.isEnabled = loadFailed
-            if !loadFailed && self.tapReloadImageEnabled == false  {
+            if self.tapReloadImageEnabled == false  {
                 singleTapGestureRecognizer?.isEnabled = false
             }
             gestureRecognizer?.isEnabled = !loadFailed
-            if !loadFailed && self.tapZoomEnabled == false  {
+            if self.tapZoomEnabled == false  {
                 gestureRecognizer?.isEnabled = false
             }
         }
