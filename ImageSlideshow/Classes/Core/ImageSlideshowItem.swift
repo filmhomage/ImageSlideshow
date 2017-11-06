@@ -46,6 +46,9 @@ open class ImageSlideshowItem: UIScrollView, UIScrollViewDelegate {
         didSet {
             singleTapGestureRecognizer?.isEnabled = loadFailed
             gestureRecognizer?.isEnabled = !loadFailed
+            if !loadFailed && self.tapZoomEnabled == false  {
+                gestureRecognizer?.isEnabled = false
+            }
         }
     }
 
