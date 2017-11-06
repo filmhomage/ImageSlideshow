@@ -35,6 +35,9 @@ open class ImageSlideshowItem: UIScrollView, UIScrollViewDelegate {
     /// Holds if the tapping zoom feature is enabled
     open var tapZoomEnabled = true
     
+    /// Holds if the tapping reload image feature is enabled
+    open var tapReloadImageEnabled = true
+    
     /// Called on ScrollViewWillBeginZooming
     open var itemScrollViewWillBeginZooming: (() -> ())?
 
@@ -59,12 +62,13 @@ open class ImageSlideshowItem: UIScrollView, UIScrollViewDelegate {
         - parameter image: Input Source to load the image
         - parameter zoomEnabled: holds if it should be possible to zoom-in the image
     */
-    init(image: InputSource, zoomEnabled: Bool, activityIndicator: ActivityIndicatorView? = nil, maximumScale : Double = 2.0, tapZoomEnabled : Bool = true) {
+    init(image: InputSource, zoomEnabled: Bool, activityIndicator: ActivityIndicatorView? = nil, maximumScale : Double = 2.0, tapZoomEnabled : Bool = true, tapReloadImageEnabled : Bool = true) {
         self.zoomEnabled = zoomEnabled
         self.image = image
         self.activityIndicator = activityIndicator
         self.maximumScale = maximumScale
         self.tapZoomEnabled = tapZoomEnabled
+        self.tapReloadImageEnabled = tapReloadImageEnabled
 
         super.init(frame: CGRect.null)
 
@@ -94,7 +98,7 @@ open class ImageSlideshowItem: UIScrollView, UIScrollViewDelegate {
 
         singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(retryLoadImage))
         singleTapGestureRecognizer!.numberOfTapsRequired = 1
-        singleTapGestureRecognizer!.isEnabled = false
+        singleTapGestureRecognizer!.isEnabled = tapZoomEnabled
         imageView.addGestureRecognizer(singleTapGestureRecognizer!)
     }
 

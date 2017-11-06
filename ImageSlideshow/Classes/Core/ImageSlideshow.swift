@@ -154,6 +154,12 @@ open class ImageSlideshow: UIView {
         }
     }
     
+    open var tapReloadImageEnabled = true {
+        didSet {
+            self.reloadScrollView()
+        }
+    }
+    
     /// Image change interval, zero stops the auto-scrolling
     open var slideshowInterval = 0.0 {
         didSet {
@@ -275,7 +281,7 @@ open class ImageSlideshow: UIView {
 
         var i = 0
         for image in scrollViewImages {
-            let item = ImageSlideshowItem(image: image, zoomEnabled: self.zoomEnabled, activityIndicator: self.activityIndicator?.create(), maximumScale: 3.0, tapZoomEnabled: false)
+            let item = ImageSlideshowItem(image: image, zoomEnabled: self.zoomEnabled, activityIndicator: self.activityIndicator?.create(), maximumScale: self.maximumScale, tapZoomEnabled: self.tapZoomEnabled, tapReloadImageEnabled : self.tapReloadImageEnabled)
             item.imageView.contentMode = self.contentScaleMode
             slideshowItems.append(item)
             scrollView.addSubview(item)
