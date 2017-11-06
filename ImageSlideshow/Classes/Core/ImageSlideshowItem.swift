@@ -56,10 +56,12 @@ open class ImageSlideshowItem: UIScrollView, UIScrollViewDelegate {
         - parameter image: Input Source to load the image
         - parameter zoomEnabled: holds if it should be possible to zoom-in the image
     */
-    init(image: InputSource, zoomEnabled: Bool, activityIndicator: ActivityIndicatorView? = nil) {
+    init(image: InputSource, zoomEnabled: Bool, activityIndicator: ActivityIndicatorView? = nil, maximumScale : Double = 2.0, tapZoomEnabled : Bool = true) {
         self.zoomEnabled = zoomEnabled
         self.image = image
         self.activityIndicator = activityIndicator
+        self.maximumScale = maximumScale
+        self.tapZoomEnabled = tapZoomEnabled
 
         super.init(frame: CGRect.null)
 
